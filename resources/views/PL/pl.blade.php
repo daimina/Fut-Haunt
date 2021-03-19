@@ -1,14 +1,16 @@
 @extends('layout')
 @section('content')
     @isset($data)
+        <div class='mx-2'>
         @foreach($data as $datum)
             <div class='mx-4'>
-                <p class='mb-0'>FROM:{{ $datum->name }}</p>
+                <p class='mb-1'><strong>{{ $datum->name }}</strong></p>
                 <p class='mb-0'>{{ $datum->text }}</p>
                 <p><small>{{ $datum->created_at }}</small></p>
                 <hr>
             </div>
         @endforeach
+        </div>
     @endisset
 
     <form action="/PL/create" method='POST'>

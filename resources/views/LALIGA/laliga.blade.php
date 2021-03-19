@@ -3,7 +3,7 @@
     @isset($data)
         @foreach($data as $datum)
             <div class='mx-4'>
-                <p class='mb-0'>FROM:{{ $datum->name }}</p>
+                <p class='mb-1'><strong>{{ $datum->name }}</strong></p>
                 <p class='mb-0'>{{ $datum->text }}</p>
                 <p><small>{{ $datum->created_at }}</small></p>
                 <hr>
@@ -11,7 +11,7 @@
         @endforeach
     @endisset
 
-    <form action="/bundes/create" method='POST'>
+    <form action="/laliga/create" method='POST'>
         <div class="form-group mb-3 mx-4">
             <label for="name" class="form-label">Your name</label>
             <input type="text" class="form-control" id="name" name='name' placeholder="Who are you">

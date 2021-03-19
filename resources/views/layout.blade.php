@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name='csrf-token' content='{{ csrf_token() }}'>
     <title>Fut Haunt サッカー好きの溜まり場</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
     rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
     crossorigin="anonymous">
 </head>
-<body>
+<body style="background-color: #e3f2fd;">
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+        <nav class="navbar navbar-expand-lg navbar-light mb-1">
             <div class="container-fluid px-5">
                 <a class="navbar-brand" href="#">Fut Haunt</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,29 +20,89 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="{{ route('Fut.PL') }}">PL League</a>
+                        <li class="nav-item dropdown">
+                            <!-- <a class="nav-link" aria-current="page" href="{{ route('Fut.PL') }}">PL League</a> -->
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                プレミア
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <li><a class="dropdown-item" href="#">順位表</a></li>
+                                <li><a class="dropdown-item" href="#">個人成績</a></li>
+                                <li><a class="dropdown-item" href="{{ route('Fut.PL') }}">掲示板</a></li>
+                            </ul>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('Fut.liga') }}">LaLiga</a>
+                        <li class="nav-item dropdown">
+                            <!-- <a class="nav-link" aria-current="page" href="{{ route('Fut.PL') }}">PL League</a> -->
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                ラリーガ
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <li><a class="dropdown-item" href="#">順位表</a></li>
+                                <li><a class="dropdown-item" href="#">個人成績</a></li>
+                                <li><a class="dropdown-item" href="{{ route('Fut.laliga') }}">掲示板</a></li>
+                            </ul>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('Fut.serie') }}">Serie A</a>
+                        <li class="nav-item dropdown">
+                            <!-- <a class="nav-link" aria-current="page" href="{{ route('Fut.PL') }}">PL League</a> -->
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                セリエ
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <li><a class="dropdown-item" href="#">順位表</a></li>
+                                <li><a class="dropdown-item" href="{{ route('score_serie')}}">個人成績</a></li>
+                                <li><a class="dropdown-item" href="{{ route('Fut.serie' )}}">掲示板</a></li>
+                            </ul>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('Fut.bundes') }}">Bundesliga</a>
+                        <li class="nav-item dropdown">
+                            <!-- <a class="nav-link" aria-current="page" href="{{ route('Fut.PL') }}">PL League</a> -->
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                ブンデス
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <li><a class="dropdown-item" href="#">順位表</a></li>
+                                <li><a class="dropdown-item" href="#">個人成績</a></li>
+                                <li><a class="dropdown-item" href="{{ route('Fut.bundes') }}">掲示板</a></li>
+                            </ul>
                         </li>
+                    </ul>
+
+                    <ul class="navbar-nav">
+                        <!-- Authentication Links -->
+                        @guest
+                            <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">ログイン</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">会員登録</a></li>
+                        @else
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
+                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
+                                            ログアウト
+                                        </a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+                                    </li>
+                                </ul>
+                            </li>
+                        @endguest
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
 
-    <main>
+    <main style="background-color: #e3f2fd;">
         @yield('content')
     </main>
 
-    <footer class="footer" style="background-color: #e3f2fd;">
+    <footer class="footer">
         <div class="container-fluid">
             <p class="text-black text-center">
                 🄫Daiki-Minaguchi All Rights Reserved

@@ -18,34 +18,35 @@ class FutController extends Controller
         #データの取得
         $data = PL::all();
         // var_dump ($data);
-        return view("league.pl", ["data" => $data]);
+        return view("PL.pl", ["data" => $data]);
     }
 
     public function liga(){
         $data = Laliga::all();
-        return view("league.laliga", ["data" => $data]);
+        return view("LALIGA.laliga", ["data" => $data]);
     }
 
     public function serie(){
         $data = Serie::all();
-        return view("league.serie", ["data" => $data]);
+        return view("SERIE.serie", ["data" => $data]);
     }
 
     public function bundes(){
         $data = Bundes::all();
-        return view("league.bundes", ["data" => $data]);
+        return view("BUNDES.bundes", ["data" => $data]);
     }
 
     public function create(Request $request){
         #URLを取得
         $url = $request->path();
         $league = explode("/", $url);
+        #リーグ名
         $league = $league[0];
         
         #投稿データの保存
         $params = $request->validate([
             'name'=>'required|max:20',
-            'text'=>'required|max:140'
+            'text'=>'required|max:140',
         ]);
 
         // dd($params);

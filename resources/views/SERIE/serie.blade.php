@@ -3,7 +3,7 @@
     @isset($data)
         @foreach($data as $datum)
             <div class='mx-4'>
-                <p class='mb-0'>FROM:{{ $datum->name }}</p>
+                <p class='mb-1'><strong>{{ $datum->name }}</strong></p>
                 <p class='mb-0'>{{ $datum->text }}</p>
                 <p><small>{{ $datum->created_at }}</small></p>
                 <hr>
