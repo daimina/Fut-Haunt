@@ -17,7 +17,7 @@ class FutController extends Controller
     public function PL(){
         #データの取得
         $data = PL::all();
-        // var_dump ($data);
+        // dd($data);
         return view("PL.pl", ["data" => $data]);
     }
 
@@ -67,5 +67,53 @@ class FutController extends Controller
         }
 
         return redirect()->route("Fut.".$league);
+    }
+
+    public function edit($league, $datum_id){
+        // dd($datum_id);
+        switch ($league){
+            case "PL":
+                $datum = PL::findOrFail($datum_id);
+                // dd($datum);
+                break;
+            case "laliga":
+                Laliga::create($params);
+                break;
+            case "bundes":
+                Bundes::create($params);
+                break;
+            case "serie":
+                Serie::create($params);
+                break;
+        }
+
+        return view("edit", ["league"=>$league, "datum"=>$datum]);
+    }
+
+    public function update($league, $datum_id, Request $request){
+        // dd($datum_id);
+        $params = $request->validate([
+            'name'=>'required|max:20',
+            'text'=>'required|max:140'
+        ]);    
+
+        switch ($league){
+            case "PL":
+                $datum = PL::findOrFail($datum_id);
+                // dd($datum);
+                break;
+            case "laliga":
+                Laliga::create($params);
+                break;
+            case "bundes":
+                Bundes::create($params);
+                break;
+            case "serie":
+                Serie::create($params);
+                break;
+        }
+
+        $datum->fill($params)->save();
+        return redirect()->route('Fut.'.$league);
     }
 }
