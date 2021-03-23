@@ -24,8 +24,9 @@ Route::post('/{league}/create', 'FutController@create');
 Route::get("/{league}/{datum_id}/edit", "FutController@edit")->name('edit');
 Route::any("/{league}/{datum_id}/update", "FutController@update")->name('update');
 Route::get("/{league}/{datum_id}/delete", "FutController@delete")->name('delete');
-Route::get("/serie/score", "FutApiController@score")->name('score_serie');
 
+Route::get("/{league}/score", "FutApiController@score")->name('score');
+Route::get("/{league}/rank", "FutApiController@rank")->name('rank');
 
 Auth::routes();
 

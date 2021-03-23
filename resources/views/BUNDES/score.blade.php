@@ -1,7 +1,7 @@
 @extends('layout')
 @section('content')
     <h3 class="mx-3">
-        【セリエA 個人成績】
+        【ブンデスリーガ 個人成績】
     </h3>
     <table class="table mx-3 border border-secondary">
         <thead>

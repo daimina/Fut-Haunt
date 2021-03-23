@@ -77,13 +77,13 @@ class FutController extends Controller
                 // dd($datum);
                 break;
             case "laliga":
-                Laliga::create($params);
+                $datum = Laliga::findOrFail($datum_id);
                 break;
             case "bundes":
-                Bundes::create($params);
+                $datum = Bundes::findOrFail($datum_id);
                 break;
             case "serie":
-                Serie::create($params);
+                $datum = Serie::findOrFail($datum_id);
                 break;
         }
 
@@ -103,17 +103,41 @@ class FutController extends Controller
                 // dd($datum);
                 break;
             case "laliga":
-                Laliga::create($params);
+                $datum = Laliga::findOrFail($datum_id);
                 break;
             case "bundes":
-                Bundes::create($params);
+                $datum = Bundes::findOrFail($datum_id);
                 break;
             case "serie":
-                Serie::create($params);
+                $datum = Serie::findOrFail($datum_id);
                 break;
         }
 
         $datum->fill($params)->save();
+        return redirect()->route('Fut.'.$league);
+    }
+
+    public function delete($league, $datum_id){
+        switch ($league){
+            case "PL":
+                $datum = PL::findOrFail($datum_id);
+                // dd($datum);
+                break;
+            case "laliga":
+                $datum = Laliga::findOrFail($datum_id);
+                break;
+            case "bundes":
+                $datum = Bundes::findOrFail($datum_id);
+                break;
+            case "serie":
+                $datum = Serie::findOrFail($datum_id);
+                break;
+        }
+
+        \DB::transaction(function() use ($datum){
+            $datum->delete();
+        });
+
         return redirect()->route('Fut.'.$league);
     }
 }

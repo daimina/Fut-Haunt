@@ -28,8 +28,8 @@
                                 プレミア
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <li><a class="dropdown-item" href="#">順位表</a></li>
-                                <li><a class="dropdown-item" href="#">個人成績</a></li>
+                                <li><a class="dropdown-item" href="{{ route('rank', ['league'=>'PL'])}}">順位表</a></li>
+                                <li><a class="dropdown-item" href="{{ route('score', ['league'=>'PL'])}}">個人成績</a></li>
                                 <li><a class="dropdown-item" href="{{ route('Fut.PL') }}">掲示板</a></li>
                             </ul>
                         </li>
@@ -39,8 +39,8 @@
                                 ラリーガ
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <li><a class="dropdown-item" href="#">順位表</a></li>
-                                <li><a class="dropdown-item" href="#">個人成績</a></li>
+                                <li><a class="dropdown-item" href="{{ route('rank', ['league'=>'LALIGA'])}}">順位表</a></li>
+                                <li><a class="dropdown-item" href="{{ route('score', ['league'=>'LALIGA'])}}">個人成績</a></li>
                                 <li><a class="dropdown-item" href="{{ route('Fut.laliga') }}">掲示板</a></li>
                             </ul>
                         </li>
@@ -50,8 +50,8 @@
                                 セリエ
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <li><a class="dropdown-item" href="#">順位表</a></li>
-                                <li><a class="dropdown-item" href="{{ route('score_serie')}}">個人成績</a></li>
+                                <li><a class="dropdown-item" href="{{ route('rank', ['league'=>'SERIE'])}}">順位表</a></li>
+                                <li><a class="dropdown-item" href="{{ route('score', ['league'=>'SERIE'])}}">個人成績</a></li>
                                 <li><a class="dropdown-item" href="{{ route('Fut.serie' )}}">掲示板</a></li>
                             </ul>
                         </li>
@@ -61,8 +61,8 @@
                                 ブンデス
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <li><a class="dropdown-item" href="#">順位表</a></li>
-                                <li><a class="dropdown-item" href="#">個人成績</a></li>
+                                <li><a class="dropdown-item" href="{{ route('rank', ['league'=>'BUNDES'])}}">順位表</a></li>
+                                <li><a class="dropdown-item" href="{{ route('score', ['league'=>'BUNDES'])}}">個人成績</a></li>
                                 <li><a class="dropdown-item" href="{{ route('Fut.bundes') }}">掲示板</a></li>
                             </ul>
                         </li>

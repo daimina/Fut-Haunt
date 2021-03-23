@@ -5,7 +5,9 @@
             <div class='mx-4'>
                 <p class='mb-1'><strong>{{ $datum->name }}</strong></p>
                 <p class='mb-0'>{{ $datum->text }}</p>
-                <p><small>{{ $datum->created_at }}</small></p>
+                <small>{{ $datum->created_at }}</small>
+                <small><a href="{{ route('edit', ['datum_id'=>$datum->id, 'league'=>'serie'] )}}">編集</a></small>
+                <small><a href="{{ route('delete', ['datum_id'=>$datum->id, 'league'=>'serie'])}}">削除</a></small>
                 <hr>
             </div>
         @endforeach
